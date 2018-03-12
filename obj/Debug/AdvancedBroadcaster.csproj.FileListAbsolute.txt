@@ -1,0 +1,8 @@
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\bin\Debug\AdvancedBroadcaster.dll
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\bin\Debug\AdvancedBroadcaster.pdb
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\bin\Debug\Fougerite.dll
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\bin\Debug\UnityEngine.dll
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\obj\Debug\AdvancedBroadcaster.csprojResolveAssemblyReference.cache
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\obj\Debug\AdvancedBroadcaster.csproj.CoreCompileInputs.cache
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\obj\Debug\AdvancedBroadcaster.dll
+C:\Users\Gebruiker\Documents\Visual Studio 2017\Projects\AdvancedBroadcaster\AdvancedBroadcaster\obj\Debug\AdvancedBroadcaster.pdb
