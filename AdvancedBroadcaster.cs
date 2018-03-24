@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +12,8 @@ namespace AdvancedBroadcaster
         public IniParser Settings;
         public static IniParser cfg;
         public static IniParser cfg1;
-        public int RegisterMessages = 1;
-        public int RegisterNotice = 1;
+        public int RegisterMessages = 0;
+        public int RegisterNotice = 0;
         public bool EnableNotice;
         public bool EnableMessages;
         public int BroadCastTime = 30;
@@ -75,7 +75,7 @@ namespace AdvancedBroadcaster
         public void CallBackChat(TimedEvent e)
         {
             e.Kill();
-            int b = rnd.Next(1, RegisterMessages);
+            int b = rnd.Next(RegisterMessages);
             string j = cfg.GetSetting("Messages", b.ToString());
             Server.GetServer().Broadcast(j);
             BroadCast(BroadCastTime * 1000, null).Start();
@@ -90,7 +90,7 @@ namespace AdvancedBroadcaster
         public void CallBackNotice(TimedEvent e)
         {
             e.Kill();
-            int b = rnd.Next(1, RegisterNotice);
+            int b = rnd.Next(RegisterNotice);
             string j = cfg1.GetSetting("Notices", b.ToString());
             Server.GetServer().BroadcastNotice(j);
             Notice(NoticeTime * 1000, null).Start();
