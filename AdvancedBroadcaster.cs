@@ -19,6 +19,10 @@ namespace AdvancedBroadcaster
         public int BroadCastTime = 30;
         public int NoticeTime = 40;
 
+        public string BroadCastMessage = "";
+        public string BroadCastNotice = "";
+
+
         public override string Name { get { return "AdvancedBroadcaster"; } }
         public override string Author { get { return "ice cold"; } }
         public override string Description { get { return "Broadcast random notices/messages in chat"; } }
@@ -75,10 +79,12 @@ namespace AdvancedBroadcaster
         public void CallBackChat(TimedEvent e)
         {
             e.Kill();
-            int b = rnd.Next(RegisterMessages);
-            string j = cfg.GetSetting("Messages", b.ToString());
-            Server.GetServer().Broadcast(j);
-            BroadCast(BroadCastTime * 1000, null).Start();
+            int b = rnd.Next(0,RegisterMessages);
+            //string j = cfg.GetSetting("Messages", b.ToString());
+            BroadCastMessage = cfg.GetSetting("Messages", b.ToString());
+            //Server.GetServer().Broadcast(j);
+            //BroadCast(BroadCastTime * 1000, null).Start();
+            Broadcast();
         }
         public TimedEvent Notice(int timeoutDelay, Dictionary<string, object> args)
         {
@@ -90,10 +96,54 @@ namespace AdvancedBroadcaster
         public void CallBackNotice(TimedEvent e)
         {
             e.Kill();
-            int b = rnd.Next(RegisterNotice);
-            string j = cfg1.GetSetting("Notices", b.ToString());
-            Server.GetServer().BroadcastNotice(j);
-            Notice(NoticeTime * 1000, null).Start();
+            int b = rnd.Next(0,RegisterNotice);
+            //string j = cfg1.GetSetting("Notices", b.ToString());
+            BroadCastNotice = cfg1.GetSetting("Notices", b.ToString());
+            //Server.GetServer().BroadcastNotice(j);
+            //Notice(NoticeTime * 1000, null).Start();
+            BroadcastNoticevoid();
+        }
+        public void Broadcast()
+        {
+            if (Util.GetUtil().CurrentWorkingThreadID != Util.GetUtil().MainThreadID)
+            {
+                Loom.QueueOnMainThread(() =>
+                {
+                    Broadcast();
+                });
+                return;
+            }
+            try
+            {
+                Server.GetServer().Broadcast(BroadCastMessage);
+                BroadCast(BroadCastTime * 1000, null).Start();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Error " + ex.ToString());
+            }
+            return;
+        }
+        public void BroadcastNoticevoid()
+        {
+            if (Util.GetUtil().CurrentWorkingThreadID != Util.GetUtil().MainThreadID)
+            {
+                Loom.QueueOnMainThread(() =>
+                {
+                    BroadcastNoticevoid();
+                });
+                return;
+            }
+            try
+            {
+                Server.GetServer().BroadcastNotice(BroadCastNotice);
+                Notice(NoticeTime * 1000, null).Start();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Error " + ex.ToString());
+            }
+            return;
         }
     }
 }
